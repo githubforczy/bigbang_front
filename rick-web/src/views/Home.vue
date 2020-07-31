@@ -1,7 +1,7 @@
 <template>
   <div class="rick-home-container">
     <div class="home-container-left">
-      <a-list item-layout="vertical" size="large" :data-source="listData">
+      <a-list item-layout="vertical" size="large" :data-source="articleList">
         <a-list-item slot="renderItem" key="item.title" slot-scope="item">
           <h1 class="post-list-titl">
             <a href="">{{item.title}}</a>
@@ -14,7 +14,7 @@
       </a-list>
     </div>
     <div class="home-container-right">
-      <a-list :split=false item-layout="vertical" size="large" :data-source="listData">
+      <a-list :split=false item-layout="vertical" size="large" :data-source="articleList">
         <a-list-item slot="renderItem" key="item.title" slot-scope="item">
           <home-content-card :contentEntity=item />
         </a-list-item>
@@ -24,39 +24,8 @@
 </template>
 
 <script>
-const listData = [
-  {
-    type: `java`,
-    bgSrc: require(`@/assets/bg-1.jpg`),
-    title: `Hello java`,
-    content:'你真的了解java吗？'
-  },
-  {
-    type: `springboot`,
-    bgSrc: require(`@/assets/bg-2.jpg`),
-    title: `Hello springboot`,
-    content:'没错 Spring Boot 越来越火了...'
-  },
-  {
-    type: `springCloud`,
-    bgSrc: require(`@/assets/bg-3.jpg`),
-    title: `Hello springCloud`,
-    content: '你真的了解springboot吗？'
-  },
-  {
-    type: `MQ`,
-    bgSrc: require(`@/assets/bg-4.jpg`),
-    title: `Hello MQ`,
-    content: '你真的了解****吗？'
-  },
-  {
-    type: `Docker`,
-    bgSrc: require(`@/assets/bg-5.jpg`),
-    title: `Hello Docker`,
-    content: '你真的了解Docker吗？'
-  }
-];
 import HomeContentCard from "@/components/HomeContentCard"
+import { articles, getArticle } from "@/commons/service/article";
 export default {
   name: 'Home',
   components: {
@@ -64,8 +33,16 @@ export default {
   },
   data() { 
     return {
-      listData
+      articleList:[]
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      articles().then(({data}) => {
+        console.info("articleList",data);
+        this.articleList = data;
+      });
+    });
   }
  }
 </script>

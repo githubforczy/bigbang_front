@@ -1,11 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
-import VueCookies from "vue-cookies";
 
-const Index = () => import("@/views/Index");
 const Login = () => import("@/views/Login");
+const Index = () => import("@/views/Index");
 const Home = () => import("@/views/Home");
-const Article = () => import("@/views/Article");
+const EditArticle = () => import("@/views/EditArticle");
 
 Vue.use(Router);
 
@@ -29,11 +28,11 @@ const router = new Router({
           },
         },
         {
-          path: "/article",
-          name: "article",
-          component: Article,
+          path: "/edit_article",
+          name: "edit_article",
+          component: EditArticle,
           meta: {
-            title: "文章专题",
+            title: "写博客",
           },
         }
       ]

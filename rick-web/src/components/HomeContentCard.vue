@@ -1,11 +1,11 @@
 <template>
   <div class="home-content-card">
-    <a-card :hoverable=true style="width: 330px; height: 260px">
+    <a-card :hoverable=true style="width: 330px; height: 200px">
       <img
         class="card-img"
         slot="cover"
         alt="example"
-        style="height: 160px"
+        style="height: 100px"
         :src="contentEntity.bgSrc"
       />
       <div class="card-type">
@@ -47,7 +47,7 @@ export default {
 <style>
 .home-content-card {
   width: 100%;
-  height: 260px;
+  height: 200px;
   display: grid;
   grid-template-columns: 240px auto;
   background-color: #f6f6f6;
@@ -82,7 +82,7 @@ export default {
 }
 .card-type {
   position: absolute;
-  top: 40px;
+  top: 20px;
   left: 0px;
   width: 100%;
   height: 60px;

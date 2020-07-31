@@ -25,50 +25,8 @@
 </template>
 
 <script>
+import { articles, getArticle } from "@/commons/service/article";
 import ArticleCard from "@/components/ArticleCard"
-const contentEntity = {
-  type: `Docker`,
-  bgSrc: require(`@/assets/bg-3.jpg`),
-  title: `Hello Docker`,
-  content: '你真的了解Docker吗？'
-};
-const listData = [
-  {
-    id: 1,
-    type: `java`,
-    bgSrc: require(`@/assets/bg-1.jpg`),
-    title: `Hello java`,
-    content:'你真的了解java吗？'
-  },
-  {
-    id: 2,
-    type: `springboot`,
-    bgSrc: require(`@/assets/bg-2.jpg`),
-    title: `Hello springboot`,
-    content:'没错 Spring Boot 越来越火了...'
-  },
-  {
-    id: 3,
-    type: `springCloud`,
-    bgSrc: require(`@/assets/bg-3.jpg`),
-    title: `Hello springCloud`,
-    content: '你真的了解springboot吗？'
-  },
-  {
-    id: 4,
-    type: `MQ`,
-    bgSrc: require(`@/assets/bg-4.jpg`),
-    title: `Hello MQ`,
-    content: '你真的了解****吗？'
-  },
-  {
-    id: 5,
-    type: `Docker`,
-    bgSrc: require(`@/assets/bg-5.jpg`),
-    title: `Hello Docker`,
-    content: '你真的了解Docker吗？'
-  }
-];
 export default {
   name: 'Article',
   components: {
@@ -76,9 +34,24 @@ export default {
   },
   data() { 
     return {
-      listData:listData,
+      articleList:[],
       contentEntity:contentEntity
     }
+  },
+  methods: {
+    get(id){
+      getArticle(id).then(({data}) => {
+
+      })
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      articles().then(({data}) => {
+        console.info("articleList",data);
+        this.articleList = data;
+      });
+    });
   }
  }
 </script>

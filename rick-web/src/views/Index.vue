@@ -31,7 +31,7 @@ export default {
     width: 100%;
     min-height: 100%;
     display: grid;
-    grid-template-rows: 48px auto 48px;
+    grid-template-rows: auto 1fr auto;
     justify-items: center;
     background-color: #f6f6f6;
   }

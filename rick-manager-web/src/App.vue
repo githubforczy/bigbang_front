@@ -17,7 +17,7 @@ export default {
 html,
 body,
 #app {
-  height: 1800px;
+  height: 100%;
   padding: 0;
   margin: 0;
   color: #606977;
